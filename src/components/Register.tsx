@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login-Register.css";
@@ -23,6 +23,29 @@ const Register: React.FC = () => {
   // Hook to enable programmatic navigation
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const handleBlur = (event: Event) => {
+      const input = event.target as HTMLInputElement;
+      if (input.value) {
+        input.classList.add("filled");
+      } else {
+        input.classList.remove("filled");
+      }
+    };
+
+    const inputs = document.querySelectorAll(".input-container input");
+
+    inputs.forEach((input) => {
+      input.addEventListener("blur", handleBlur);
+    });
+
+    return () => {
+      inputs.forEach((input) => {
+        input.removeEventListener("blur", handleBlur);
+      });
+    };
+  }, []);
+
   // Function to redirect to the login page
   const redirectToLogin = () => {
     navigate("/");
@@ -36,9 +59,7 @@ const Register: React.FC = () => {
   };
 
   // Event handler for last name input change
-  const handleLastNameChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleLastNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLastName(event.target.value);
   };
 
@@ -48,9 +69,7 @@ const Register: React.FC = () => {
   };
 
   // Event handler for password input change
-  const handlePasswordChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
@@ -105,58 +124,77 @@ const Register: React.FC = () => {
           <div className="subtitle">Register</div>
           <div className="form-group">
             <div className="name-group">
-              {/* First name input */}
-              <input
-                type="text"
-                placeholder="First name"
-                value={firstName}
-                onChange={handleFirstNameChange}
-              />
+              <div className="input-container">
+                {/* First name input */}
+                <input
+                  type="name"
+                  id="first-name"
+                  value={firstName}
+                  onChange={handleFirstNameChange}
+                  required
+                />
+                <label htmlFor="first-name" className="form-placeholder">
+                  First Name
+                </label>
+              </div>
               {/* Last name input */}
-              <input
-                type="text"
-                placeholder="Last name"
-                value={lastName}
-                onChange={handleLastNameChange}
-              />
+              <div className="input-container">
+                <input
+                  type="name"
+                  value={lastName}
+                  onChange={handleLastNameChange}
+                  required
+                />
+                <label className="form-placeholder">Last Name</label>
+              </div>
+              {/* Email input */}
+              <div className="input-container">
+                <input
+                  type="name"
+                  value={email}
+                  onChange={handleEmailChange}
+                  required
+                />
+                <label className="form-placeholder">Email</label>
+              </div>
             </div>
-            {/* Email input */}
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={handleEmailChange}
-            />
           </div>
-          <div className="form-group">
-            {/* Password input */}
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={handlePasswordChange}
-            />
+          <div className="cred-group">
+            <div className="input-container">
+              {/* Password input */}
+              <input
+                type="password"
+                id="password-field"
+                value={password}
+                onChange={handlePasswordChange}
+                required
+              />
+              <label className="form-placeholder">Password</label>
+            </div>
           </div>
-          <div className="form-group">
-            {/* Confirm password input */}
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
-            />
+          <div className="cred-group">
+            <div className="input-container">
+              {/* Confirm password input */}
+              <input
+                type="password"
+                id="confirm-password-field"
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+                required
+              />
+              <label className="form-placeholder">Confirm Password</label>
+            </div>
           </div>
           <footer>
             {/* Link to login page */}
             <div className="login_bottom_left">
-              Already have an account?{" "}
               <span className="link" onClick={redirectToLogin}>
-                Login here.
+                Already have an account? Login here.
               </span>
             </div>
             {/* Registration button */}
             <div className="login_bottom_right">
-              <button className="login_redirect_button" type="submit">
+              <button className="register_button" type="submit">
                 Register
               </button>
             </div>

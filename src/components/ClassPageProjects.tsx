@@ -57,7 +57,7 @@ const ClassPageProjects: React.FC<ClassPageProjectsProps> = ({
   // Fetch projects when the component mounts
   useEffect(() => {
     setAnimate(true);
-    if (user?.email) {
+    if (user.email) {
       axios
         .post("/api/getProjects", {
           classID: classID,
@@ -82,9 +82,7 @@ const ClassPageProjects: React.FC<ClassPageProjectsProps> = ({
   ) => {
     setNewProjectDesc(e.target.value);
   };
-  const handleNewGroupNameChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleNewGroupNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewGroupName(e.target.value);
   };
 
@@ -199,9 +197,7 @@ const ClassPageProjects: React.FC<ClassPageProjectsProps> = ({
   };
 
   // Event handler for submitting a new project
-  const handleNewProjectSubmit = (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleNewProjectSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
       newProjectTitle === "" ||
@@ -287,14 +283,14 @@ const ClassPageProjects: React.FC<ClassPageProjectsProps> = ({
         onSubmit={handleNewProjectSubmit}
       >
         <input
-          type="text"
+          type="title"
           placeholder="New Project Title"
           value={newProjectTitle}
           onChange={handleNewProjectTitleChange}
         />
         <div className="new-project-description">
           <input
-            type="text"
+            type="title"
             placeholder="New Project Description"
             value={newProjectDesc}
             onChange={handleNewProjectDescChange}
@@ -302,7 +298,7 @@ const ClassPageProjects: React.FC<ClassPageProjectsProps> = ({
         </div>
         <div className="new-project-group-name">
           <input
-            type="text"
+            type="title"
             placeholder="New Group Name"
             value={newGroupName}
             onChange={handleNewGroupNameChange}
@@ -326,7 +322,13 @@ const ClassPageProjects: React.FC<ClassPageProjectsProps> = ({
             ({ projectID, title, description, group, ownerEmail }) => (
               <div className="project-card" key={projectID}>
                 {/* Display delete button for project owner */}
-                {isOwner({ projectID, title, description, group, ownerEmail }) && (
+                {isOwner({
+                  projectID,
+                  title,
+                  description,
+                  group,
+                  ownerEmail,
+                }) && (
                   <button
                     className="delete-project-button"
                     onClick={() => handleProjectDelete(projectID)}
@@ -355,21 +357,21 @@ const ClassPageProjects: React.FC<ClassPageProjectsProps> = ({
                 {/* Display join/leave buttons based on user's status */}
                 <div className="join-leave-buttons">
                   {/* Display join button for non-members */}
-                  {(!(user.email == ownerEmail) &&
+                  {!(user.email == ownerEmail) &&
                     isUserNotAMember({
                       projectID,
                       ownerEmail,
                       title,
                       description,
                       group,
-                    })) && (
-                    <button
-                      className="join-project-button"
-                      onClick={() => handleProjectJoin(projectID)}
-                    >
-                      Join
-                    </button>
-                  )}
+                    }) && (
+                      <button
+                        className="join-project-button"
+                        onClick={() => handleProjectJoin(projectID)}
+                      >
+                        Join
+                      </button>
+                    )}
 
                   {/* Display leave button for members */}
                   {canUserLeaveProject({
@@ -394,6 +396,5 @@ const ClassPageProjects: React.FC<ClassPageProjectsProps> = ({
     </MainLayout>
   );
 };
-
 
 export default ClassPageProjects;

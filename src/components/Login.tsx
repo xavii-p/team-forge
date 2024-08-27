@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Route, useNavigate } from "react-router-dom";
 import axios from "axios";
-import useLocalState from './useLocalStorage';
+import useLocalState from "./useLocalStorage";
 import SuccessMessage from "./SuccessMessage";
 import { getEmailFromJWT } from "../jwtUtils";
+import ForgotPasswordPopup from "./ForgotPasswordPopup";
 
 import "../App.css";
 import "./Login-Register.css";
@@ -30,6 +31,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [user, setUser] = useState<User>({ name: "", email: "" });
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -49,7 +51,13 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
 
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = { email: email, password: password };
@@ -63,16 +71,11 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         const { name, email } = res.data;
         console.log(res.data);
         const user: User = { name, email };
-       
 
-
-        
         const jwt = res.data.token;
-        
-        localStorage.setItem('jwt', jwt); // Store JWT in localStorage
- 
 
-       
+        localStorage.setItem("jwt", jwt); // Store JWT in localStorage
+
         setUser(user);
         onLogin(user);
         setShowSuccessMessage(true);
@@ -83,12 +86,12 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       })
       .catch((error) => {
         if (error.response && error.response.data) {
-          setErrorMessage(error.response.data.message);
+          setErrorMessage("Error logging in.");
           setTimeout(() => {
             setErrorMessage("");
           }, 5000);
         } else {
-          setErrorMessage(error.response.data.message);
+          setErrorMessage("Error logging in.");
           setTimeout(() => {
             setErrorMessage("");
           }, 5000);
@@ -112,6 +115,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             placeholder="Email"
             value={email}
             onChange={handleEmailChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -120,20 +124,24 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             placeholder="Password"
             value={password}
             onChange={handlePasswordChange}
+            required
           />
         </div>
         <footer>
-          <div className="login_bottom_left">Forgot password.</div>
+          <div className="login_bottom_left" onClick={handleOpenPopup}>
+            Forgot password?
+          </div>
+          {isPopupOpen && <ForgotPasswordPopup onClose={handleClosePopup} />}
           <div className="login_bottom_right">
             <button className="login_button" type="submit">
               Login
             </button>
             <button
-              className="login_redirect_button"
-              type="button"
+              className="redirect_button"
+              type="submit"
               onClick={redirectToRegister}
             >
-              Register
+              Create account
             </button>
             {/* <button
               className="login_redirect_button"

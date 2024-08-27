@@ -3,7 +3,8 @@ body {
   margin: 0;
 }
 
-.InfoContainer, .AvailabilityContainer {
+.InfoContainer,
+.AvailabilityContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,17 +18,14 @@ body {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
 
-
-.InfoContainer h2, .AvailabilityContainer h2 {
+.InfoContainer h2,
+.AvailabilityContainer h2 {
   font-size: 8px;
   margin: 0 0 20px;
 }
 
-
-
 .ProfilePage h3 {
   text-align: center;
-
 }
 .ProfilePage {
   padding-top: 100px;
@@ -36,34 +34,32 @@ body {
 .ProfilePage h4 {
   text-align: center;
 }
-.slider-container  {
+.slider-container {
   text-align: center;
 }
-.question  {
+.question {
   text-align: center;
 }
 
 .chexkbox .rc-slider-track {
-  borderColor: "red";
-
+  bordercolor: "red";
 }
 .Pane {
-  display: grid ;
+  display: grid;
   grid-gap: 100px;
   grid-template-columns: 2fr 1fr 2fr;
 }
 
 .question form {
   text-align: left;
-
 }
-.question h2{
+.question h2 {
   color: var(--steel-blue);
 }
-.question h1{
+.question h1 {
   color: var(--steel-blue);
 }
-.profile_page h3{
+.profile_page h3 {
   color: var(--steel-blue);
 }
 .AvailabilityHeader {
@@ -76,184 +72,169 @@ body {
   justify-content: center;
   align-items: center;
   display: flex;
-
-
 }
 table {
-width: 100%; /* Set the table width to 100% */
-border-collapse: collapse;
+  width: 100%; /* Set the table width to 100% */
+  border-collapse: collapse;
 }
-.InfoContainer, .AvailabilityContainer {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-text-align: center;
-margin: 0 auto;
-max-width: 800px;
-padding: 20px;
-background-color: #fff;
-border-radius: 6px;
-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-margin-top: 20px; /* Adjusted margin-top for centering */
+.InfoContainer,
+.AvailabilityContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  margin-top: 20px; /* Adjusted margin-top for centering */
 }
 .ProfilePage {
-
-
-.question {
-  
-
-  .MPane {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    label {
-      color: white;
-      margin-bottom: 10px;
-    }
-
-    .question-options {
+  .question {
+    .MPane {
       display: flex;
       flex-direction: column;
       align-items: center;
 
-      input {
-        margin-bottom: 5px;
-      }
-    }
-  }
-}
-
-.AvailabilityHeader {
-  
-
-  .MPane {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    table {
-      
-
       label {
         color: white;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
+      }
+
+      .question-options {
         display: flex;
+        flex-direction: column;
         align-items: center;
 
         input {
-          margin-right: 5px;
+          margin-bottom: 5px;
         }
       }
+    }
+  }
 
-      
+  .AvailabilityHeader {
+    .MPane {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      table {
+        label {
+          color: white;
+          margin-bottom: 5px;
+          display: flex;
+          align-items: center;
+
+          input {
+            margin-right: 5px;
+          }
+        }
+      }
     }
   }
 }
-}
 
 .ProfilePage {
-height: 100vh;
+  height: 100vh;
 }
 
 .center-container {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 .checkbox-item {
-margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .blue-text {
-color: white;
+  color: white;
 }
 .center-container {
-display: flex;
-justify-content: space-around; /* Adjust as needed */
+  display: flex;
+  justify-content: space-around; /* Adjust as needed */
 }
 
 .section {
-flex: 1; /* Each section takes equal space */
-margin: 0 10px; /* Adjust as needed */
+  flex: 1; /* Each section takes equal space */
+  margin: 0 10px; /* Adjust as needed */
 }
 
 .checkbox-item {
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
 }
 .center-container {
-display: flex;
-flex-direction: column;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .grid-container {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
 }
 
-
-
 .center-container {
-display: flex;
-flex-direction: column;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .grid-container {
-display: flex; /* Change to flex to arrange sections in a row */
-gap: 20px;
+  display: flex; /* Change to flex to arrange sections in a row */
+  gap: 20px;
 }
 
 .section {
-flex: 1; /* Each section takes equal width */
+  flex: 1; /* Each section takes equal width */
 }
 
-
-.blue-text{
-font-family: 'Your Chosen Font', sans-serif; 
-font-size: 18px; /* Adjust the font size as needed */
-color: var(--steel-blue);
+.blue-text {
+  font-family: "Your Chosen Font", sans-serif;
+  font-size: 18px; /* Adjust the font size as needed */
+  color: var(--steel-blue);
 }
 /* CSS styles */
 .grid-container {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
 }
 
 .availability-day {
-display: flex;
-flex-direction: row;
-align-items: center;
-margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .availability-day h3 {
-margin-right: 10px;
+  margin-right: 10px;
 }
 
 .time-slots {
-display: flex;
-flex-direction: row;
-align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
-
 
 /* Updated CSS styles */
 .grid-container {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
 }
 
 .section {
-display: flex;
-flex-direction: column;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

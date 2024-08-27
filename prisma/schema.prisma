@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
 }
 
 datasource db {
@@ -11,9 +12,10 @@ datasource db {
 model Entry {
   id                String             @id @default(uuid())
   createdAt         DateTime           @default(now())
-  skills             String[]
-  interests          String[]
-  availability       Json?
+  skills            String[]
+  interests         String[]
+  role              Roles              @default(USER)
+  availability      Json?
   
   relation          String[] //id of students the user wants to work with.
   password          String
@@ -36,7 +38,10 @@ enum Skills {
   Python
   C
 }
-
+enum Roles{
+  USER
+  ADMIN
+}
 model Message {
   id            String   @id @default(uuid())
   senderEmail   String

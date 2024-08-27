@@ -1,6 +1,13 @@
 // Import React and necessary hooks/components from react-router-dom
 import React, { useState, useEffect } from "react";
-import { useLocation, useParams, Link, Routes, Route, Outlet } from "react-router-dom";
+import {
+  useLocation,
+  useParams,
+  Link,
+  Routes,
+  Route,
+  Outlet,
+} from "react-router-dom";
 import ClassPageNavBar from "./ClassPageNavBar";
 import axios from "axios";
 import "./ClassPage.css";
@@ -38,19 +45,23 @@ const ClassPage: React.FC<ClassPageProps> = ({ user, onLogout }) => {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   // Event handler for handling changes in the new project title field
-  const handleNewProjectTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNewProjectTitleChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setNewProjectTitle(e.target.value);
   };
 
   // Event handler for handling changes in the new project description field
-  const handleNewProjectDescChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNewProjectDescChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setNewProjectDesc(e.target.value);
   };
 
   // Event handler for handling changes in the new group name field
   const handleNewGroupNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewGroupName(e.target.value);
-  }
+  };
 
   // Event handler for submitting a new project
   const handleNewProjectSubmission = (e: React.FormEvent<HTMLFormElement>) => {
@@ -61,8 +72,8 @@ const ClassPage: React.FC<ClassPageProps> = ({ user, onLogout }) => {
     }
     // Make a POST request to create a new project
     axios
-      .post("http://localhost:3001/createProject", { // replace with user.token
-        email: user?.email,
+      .post("http://localhost:3001/createProject", {
+        email: user.email,
         title: newProjectTitle,
         description: newProjectDesc,
         classID: classID,
@@ -75,7 +86,7 @@ const ClassPage: React.FC<ClassPageProps> = ({ user, onLogout }) => {
           {
             title: newProjectTitle,
             description: newProjectDesc,
-            members: [user?.name],
+            members: [user.name],
           },
         ]);
         // Reset form fields and hide the form

@@ -7,7 +7,6 @@ import ClassPageProjects from "./ClassPageProjects";
 import ClassPagePeople from "./ClassPagePeople";
 import SuccessMessage from "./SuccessMessage";
 
-
 interface User {
   name: string;
   email: string;
@@ -18,12 +17,14 @@ interface ClassPageNavBarProps {
   onLogout: () => void;
 }
 
-const ClassPageNavBar: React.FC<ClassPageNavBarProps> = ({ user, onLogout }) => {
+const ClassPageNavBar: React.FC<ClassPageNavBarProps> = ({
+  user,
+  onLogout,
+}) => {
   const { classID } = useParams<{ classID: string }>();
   const [subtitle, setSubtitle] = useState<string>("Class Name"); // replace with subtitle from classID
   const [successMessage, setSuccessMessage] = useState<string>("");
   const navigate = useNavigate();
-
 
   useEffect(() => {
     if (classID) {
@@ -35,20 +36,24 @@ const ClassPageNavBar: React.FC<ClassPageNavBarProps> = ({ user, onLogout }) => 
           setSubtitle(res.data.subtitle);
         })
         .catch((error) => {
-          console.error(`Error fetching subtitle: ${error.response.data.message}`);
+          console.error(
+            `Error fetching subtitle: ${error.response.data.message}`
+          );
         });
     }
-  }, []);
-
-
+  }, [classID]); // Added classID as a dependency
 
   const handleLeaveClass = () => {
-    if (window.confirm("Are you sure you want to leave this class?") && user?.email) {
-
-      axios.post("/api/leaveClass", {
-        email: user?.email,
-        classID: classID,
-      })
+    if (
+      window.confirm("Are you sure you want to leave this class?") && user
+        ? "user.email"
+        : null
+    ) {
+      axios
+        .post("/api/leaveClass", {
+          email: "user?.email",
+          classID: classID,
+        })
         .then((res) => {
           setSuccessMessage(res.data.message);
           setTimeout(() => {
@@ -59,18 +64,26 @@ const ClassPageNavBar: React.FC<ClassPageNavBarProps> = ({ user, onLogout }) => 
         .catch((error) => {
           console.error(`Error leaving class: ${error.response.message}`);
         });
-    };
-  };
+    }
+  }; // Removed the dependency array here
 
   return (
     <div>
       <div className="navigation">
         <div className="container">
           <h1> {subtitle} </h1>
-          <Link className="class-page-nav-item" to={`/./Projects/${classID}/projects`} state={{ subtitle: subtitle }}>
+          <Link
+            className="class-page-nav-item"
+            to={`/./Projects/${classID}/projects`}
+            state={{ subtitle: subtitle }}
+          >
             Projects
           </Link>
-          <Link className="class-page-nav-item" to={`/./Projects/${classID}/people`} state={{ subtitle: subtitle }}>
+          <Link
+            className="class-page-nav-item"
+            to={`/./Projects/${classID}/people`}
+            state={{ subtitle: subtitle }}
+          >
             People
           </Link>
           {successMessage && <SuccessMessage message={successMessage} />}

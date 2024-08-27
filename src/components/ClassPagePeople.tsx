@@ -11,7 +11,6 @@ import "./ClassPage.css";
 import "./ClassPageNavBar.css";
 import "./ClassPagePeople.css";
 
-
 // const Search = require("./../api/utils/_search.js");
 
 interface User {
@@ -120,12 +119,15 @@ const Test: React.FC<ClassPagePeopleProps> = ({ user, onLogout }) => {
         <div className="group-form-box">
           <form onSubmit={handleSubmit}>
             <div className="group-form-title">Grouping</div>
-            <input className="group-form-title"
+            <input
+              className="group-form-title"
               type="number"
               value={input}
               onChange={(e) => setInput(e.target.value)}
             />
-            <button className="group-form-button" onSubmit={handleSubmit}>Group</button>
+            <button className="group-form-button" onSubmit={handleSubmit}>
+              Group
+            </button>
           </form>
           {list.map((item, index) => (
             <p key={index}>{item}</p>
@@ -140,25 +142,25 @@ const Test: React.FC<ClassPagePeopleProps> = ({ user, onLogout }) => {
                 <tr className="profile-row" key={profile.id}>
                   <td className="profile-head">
                     <div className="placeholder"></div>
-                    <div className="profile-name">
-                      {profile.name}
-                    </div>
-                    <div className="profile-email">
-                      {profile.email}
-                    </div>
+                    <div className="profile-name">{profile.name}</div>
+                    <div className="profile-email">{profile.email}</div>
                     <div className="placeholder"></div>
                   </td>
                   <td>
                     <div className="section-title">Skills</div>
-                    {profile.skills.map((skill) => (
-                      <div className="section-content">{skill}</div>
+                    {profile.skills.map((skill, index) => (
+                      <div className="section-content" key={index}>
+                        {skill}
+                      </div>
                     ))}
                     <div className="placeholder"></div>
                   </td>
                   <td>
                     <div className="section-title">Interests</div>
-                    {profile.interests.map((interest) => (
-                      <div className="section-content">{interest}</div>
+                    {profile.interests.map((interest, index) => (
+                      <div className="section-content" key={index}>
+                        {interest}
+                      </div>
                     ))}
                     <div className="placeholder"></div>
                   </td>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Projects.css";
 import { Link, Routes, Route, Outlet } from "react-router-dom";
 import axios from "axios";
@@ -27,11 +27,11 @@ interface ProjectsProps {
 const Projects: React.FC<ProjectsProps> = ({ user, onLogout }) => {
   const [classes, setClasses] = useState<Class[]>([]);
   useEffect(() => {
-    if (user?.email) {
+    if (user ? "user.email" : null) {
       // replace for user.token
       axios
         .post("/api/getClasses", {
-          email: user?.email,
+          email: "user?.email",
         })
         .then((res) => {
           setClasses(res.data);

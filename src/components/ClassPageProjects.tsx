@@ -36,8 +36,8 @@ const ClassPageProjects: React.FC<ClassPageProjectsProps> = ({
   onLogout,
 }) => {
   // Extracting classID from URL params
-  let ID = useParams<{ classID: string }>();
-  let classID: string = "";
+  const ID = useParams<{ classID: string }>();
+  let classID = "";
   if (typeof ID.classID === "string") {
     classID = ID.classID;
   } else {

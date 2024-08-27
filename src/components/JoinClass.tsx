@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaExclamationTriangle } from 'react-icons/fa';
+import { FaExclamationTriangle } from "react-icons/fa";
 import MainLayout from "./MainLayout";
 import "./ClassPage.css";
 import "./JoinClass.css";
@@ -36,13 +36,13 @@ const JoinClass: React.FC<JoinClassProps> = ({ user, onLogout }) => {
   const [successMessage, setSuccessMessage] = useState<string>("");
   const navigate = useNavigate();
 
-  // useEffect hook to fetch classes 
+  // useEffect hook to fetch classes
   useEffect(() => {
-    if (user?.email) {
+    if (user ? "user.email" : null) {
       axios
         .get("/api/listClasses", {
           params: {
-            email: user?.email,
+            email: "user?.email",
           },
         })
         .then((res) => {
@@ -56,44 +56,45 @@ const JoinClass: React.FC<JoinClassProps> = ({ user, onLogout }) => {
 
   // Function to handle joining a class
   const handleJoinClass = (classID: string) => {
-    axios.post("/api/joinClass", {
-      email: user?.email,
-      classID: classID,
-    })
-    .then((res) => {
-      setSuccessMessage(res.data.message);
-      setTimeout(() => {
-        setSuccessMessage("");
-        navigate("/Projects");
-      }, 3000);
-    })
-    .catch((error) => {
-      if (error.response && error.response.status === 400) {
-        const message = error.response.data.message
-        setErrorMessage(message);
+    axios
+      .post("/api/joinClass", {
+        email: "user?.email",
+        classID: classID,
+      })
+      .then((res) => {
+        setSuccessMessage(res.data.message);
         setTimeout(() => {
-          setErrorMessage("");
-        }, 2000);
-      } else {
-        setErrorMessage(error.response.data.message);
-        setTimeout(() => {
-          setErrorMessage("");
-        }, 2000);
-      }
-    })
-  }
-
+          setSuccessMessage("");
+          navigate("/Projects");
+        }, 3000);
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 400) {
+          const message = error.response.data.message;
+          setErrorMessage(message);
+          setTimeout(() => {
+            setErrorMessage("");
+          }, 2000);
+        } else {
+          setErrorMessage(error.response.data.message);
+          setTimeout(() => {
+            setErrorMessage("");
+          }, 2000);
+        }
+      });
+  };
 
   return (
     <MainLayout user={user} onLogout={onLogout}>
       <AddClassNavBar user={user} onLogout={onLogout} />
       {errorMessage && (
         <div className="error-message">
-          <FaExclamationTriangle />{errorMessage}
+          <FaExclamationTriangle />
+          {errorMessage}
         </div>
       )}
       <div className="class-card-container">
-        {successMessage && <SuccessMessage message={successMessage} />} 
+        {successMessage && <SuccessMessage message={successMessage} />}
         {classes.map(({ classID, title, subtitle, members }) => (
           <div key={classID} className="class-card">
             <div className="title-subtitle">
@@ -101,10 +102,14 @@ const JoinClass: React.FC<JoinClassProps> = ({ user, onLogout }) => {
               <div className="subtitle">{subtitle}</div>
             </div>
             <div className="members">
-              Members:{" "}
-              <span className="membersCount">{members.length}</span>
+              Members: <span className="membersCount">{members.length}</span>
             </div>
-            <button className="join-button" onClick={() => handleJoinClass(classID)}>Join</button>
+            <button
+              className="join-button"
+              onClick={() => handleJoinClass(classID)}
+            >
+              Join
+            </button>
           </div>
         ))}
       </div>

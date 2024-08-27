@@ -1,10 +1,10 @@
 import MainLayout from "./MainLayout";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import React, { useState } from "react";
-import ProfImg from './images/ProfImg.png';
-import MessageImg from './images/Messages.png';
-import MyProj from './images/MyProj.png';
-import './Home.css';
+import ProfImg from "./images/ProfImg.png";
+import MessageImg from "./images/Messages.png";
+import MyProj from "./images/MyProj.png";
+import "./Home.css";
 
 // Defining the User interface for type safety
 interface User {
@@ -21,14 +21,14 @@ interface HomeProps {
 // Functional component representing the Home page
 const Home: React.FC<HomeProps> = ({ user, onLogout }) => {
   // Using the useNavigate hook from react-router-dom to enable navigation
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   // Function to redirect to the ProfilePage
   const redirectToProfilePage = () => {
     navigate("/ProfilePage", {
       state: {
-        email: 'ggg'
-      }
+        email: "ggg",
+      },
     });
   };
 
@@ -37,7 +37,7 @@ const Home: React.FC<HomeProps> = ({ user, onLogout }) => {
     navigate("/Messages", {
       state: {
         user: user,
-      }
+      },
     });
   };
 
@@ -45,8 +45,8 @@ const Home: React.FC<HomeProps> = ({ user, onLogout }) => {
   const redirectToMyProjects = () => {
     navigate("/Projects", {
       state: {
-        email: 'ggg'
-      }
+        email: "ggg",
+      },
     });
   };
 

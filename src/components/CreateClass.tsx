@@ -68,7 +68,7 @@ const CreateClass: React.FC<CreateClassProps> = ({ user, onLogout }) => {
         .post("/api/addClass", {
           title: title,
           subtitle: subtitle,
-          email: user?.email,
+          email: "user?.email",
         })
         .then((res) => {
           setSuccessMessage(res.data.message);

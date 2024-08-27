@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { IconContext } from "react-icons";
 import axios from "axios";
 
@@ -65,8 +65,6 @@ const PopoutComponent: React.FC<PopoutComponent> = ({
   const [interestsWeight, setInterestsWeight] = useState(0);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-
-
   useEffect(() => {
     console.log(
       "Default values: ",
@@ -83,7 +81,7 @@ const PopoutComponent: React.FC<PopoutComponent> = ({
   ]);
 
   useEffect(() => {
-    if (user?.email) {
+    if (user ? "user.email" : null) {
       axios
         .post("/api/getClassPreferences", {
           email: user.email,
@@ -122,7 +120,7 @@ const PopoutComponent: React.FC<PopoutComponent> = ({
   };
 
   const handleUpdate = async () => {
-    if (user?.email) {
+    if (user ? "user.email" : null) {
       axios
         .post("/api/setClassPreferences", {
           email: user.email,
@@ -155,8 +153,8 @@ const PopoutComponent: React.FC<PopoutComponent> = ({
           )}
         </div>
         {showSuccessMessage && (
-              <SuccessMessage message="Preferences updated!" />
-            )}
+          <SuccessMessage message="Preferences updated!" />
+        )}
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
           <ul className="nav-menu-items">
             <li className="popout-toggle">
@@ -234,10 +232,12 @@ const PopoutComponent: React.FC<PopoutComponent> = ({
                 onChange={(e) => setInterestsWeight(Number(e.target.value))}
               />
             </li>
-            <button className="update-preferences-button" onClick={handleUpdate}>
+            <button
+              className="update-preferences-button"
+              onClick={handleUpdate}
+            >
               Update
             </button>
-  
           </ul>
         </nav>
       </IconContext.Provider>

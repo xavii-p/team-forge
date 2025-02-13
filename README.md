@@ -4,7 +4,7 @@
 
 ![TeamForge Dashboard](public/images/teamforge-1.png)
 
-![TeamForge Project View](public/images/teamforge-2.png)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![TeamForge Project View](public/images/teamforge-2.png)
 
 ## Overview
 

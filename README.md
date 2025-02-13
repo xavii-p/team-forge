@@ -2,6 +2,10 @@
 
 [team-forge-restruct.vercel.app](https://team-forge-restruct.vercel.app)
 
+![TeamForge Dashboard](public/images/teamforge-1.png)
+
+![TeamForge Project View](public/images/teamforge-2.png)
+
 ## Overview
 
 Team Forge is a collaborative platform designed to help teams manage projects, communicate, and share resources efficiently. It provides a seamless experience for users to join classes, create and manage projects, and collaborate with team members.
